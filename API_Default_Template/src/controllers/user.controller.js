@@ -7,7 +7,11 @@ const getAllUsers = (req, res) => {
 //get all users by id
 const getUserById = (req, res) => {
   const userId = parseInt(req.params.id);
-  const user = users_data.find((u) => u.id === userId);
+  //verification of parameter id, if it is not a number, return an error
+  if (isNaN(userId)) {
+    return res.status(400).json({ message: "Invalid user ID" }); 
+  }
+const user = users_data.find((u) => u.id === userId);
   if (user) {
     res.status(200).json(user);
   } else {
