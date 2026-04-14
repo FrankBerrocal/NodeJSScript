@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const userRoutes = require('./routes/user.routes');
 dotenv.config();
 const app = express();
+const morgan = require('morgan');
+app.use(morgan('dev'));
 const PORT = process.env.PORT || 4001;
 app.use(express.json());
 app.get('/', (req, res) => {
